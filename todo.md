@@ -16,7 +16,7 @@
 | S6 | 容错、跨日结转与持久化回归 | 15 分钟 | ☑ 已完成 | `fix: 持久化容错与跨日结转` |
 | S7a | PWA 骨架(manifest + 图标 + SW 基础) | 10 分钟 | ☑ 已完成 | `feat: PWA 骨架` |
 | S7b | 离线完善与缓存升级策略 | 10 分钟 | ◐ 部分:缓存清单带版本、install 失败不接管已完成;缺页面侧更新提示与 `?v=` 查询串 | `feat: 离线完善` |
-| S8 | 部署到 Qoder Sites + 终验 | 20 分钟 | ☐ 未开始 | `chore: 部署到 Qoder Sites` |
+| S8 | 部署到 Qoder Sites + 终验 | 20 分钟 | ◐ 站点已上线公开访问;待手机真机终验 | `chore: 部署到 Qoder Sites` |
 
 **总计约 185 分钟;关键路径(S0→S1→S2→S3→S4→S5→S6→S7b→S8)约 175 分钟。** S7a 可与 S3–S6 任意阶段并行。
 
@@ -24,7 +24,9 @@
 - S0–S6 与 S7a 已落地在一次提交里,`npm test` 15/15 通过(PRD §9.1 的 AC-01–AC-14 全部对应)。
 - `tools/check_words.py` 未写;词库 10 词为沿用原文件内容,未做逐字脚本核对。
 - 实现中修正了 PRD 的一处歧义:重排「隔 1 张」按"两张卡之间恰好夹 1 张"实现(队列中下标 +1);答错后该卡 `kind` 变为 `redo`,计入队列卡「重学」行。
-- 剩余:S7b 的页面侧更新提示与 `?v=` 版本查询串、S8 部署与真机终验。
+- 剩余:S7b 的页面侧更新提示与 `?v=` 版本查询串、S8 的手机真机终验。
+- 线上地址:`https://chinese-flashcards-7dexd8r5uqp.qoder.zone`(Qoder Sites,访问策略 public);GitHub 仓库已转公开:`https://github.com/houchenfeng/chinese-flashcards`。
+- 发布物放在 `dist/`(仅静态文件,构建产物目录,不入版本库);`.中文百词斩.qoder.site` 为发布工具生成的站点描述符。
 - **视觉改版(2026-11-23)**:整体换为 Neo-Brutalist 视觉体系(直角、4px 黑边、硬偏移阴影、黑白+明黄/电光蓝/荧光粉/薄荷绿撞色、Archivo Black + Space Grotesk 本地化字体、SVG 网格背景),PRD §2 配色与视觉规范已同步;功能逻辑与数据格式未变,`npm test` 仍 15/15。
 
 **既定前提**(2026-11-23 已确认)
