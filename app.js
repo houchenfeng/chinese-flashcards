@@ -114,7 +114,7 @@ function renderToday() {
   const done = state.today.doneNew;
 
   $('#today-date').textContent = fmtDate(today);
-  $('#goal-title').textContent = `今日目标 ${target} 词`;
+  $('#goal-num').textContent = target;
   $('#done-num').textContent = done;
   $('#done-total').textContent = target;
   $('#done-bar').style.width = `${target ? Math.min(100, (done / target) * 100) : 0}%`;
@@ -262,7 +262,7 @@ function renderSummary() {
       const div = document.createElement('div');
       div.className = 'wrong-item';
       div.innerHTML = `<div class="row"><b>${w.汉字}</b><span class="muted">${w.拼音}</span></div>
-        <div class="muted" style="font-size:14px">${w.英文释义}</div>`;
+        <div class="gloss">${w.英文释义}</div>`;
       list.appendChild(div);
     }
   }

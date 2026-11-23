@@ -1,4 +1,4 @@
-const CACHE = 'zw-v2';
+const CACHE = 'zw-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -8,6 +8,8 @@ const ASSETS = [
   './words.js',
   './manifest.webmanifest',
   './icon.svg',
+  './fonts/archivo-black-latin.woff2',
+  './fonts/space-grotesk-latin.woff2',
 ];
 
 self.addEventListener('install', (e) => {

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>中文百词斩</title>
-<meta name="theme-color" content="#FAFAF8">
+<meta name="theme-color" content="#FFE500">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="stylesheet" href="./styles.css">
 </head>
@@ -12,29 +12,39 @@
 <div id="app">
 
   <section id="view-today" class="view">
-    <header class="topbar">
-      <h1>中文百词斩</h1>
-      <span id="today-date" class="muted"></span>
+    <header class="poster">
+      <div class="poster-main">
+        <h1 class="poster-title">中文百词斩</h1>
+        <p class="poster-sub">CHINESE&nbsp;FLASHCARDS&nbsp;/&nbsp;HSK&nbsp;1–2</p>
+      </div>
+      <div class="sticker" id="today-date">11月23日 周一</div>
     </header>
 
     <p id="save-warn" class="warn" hidden>进度未能保存,本机可能禁用了存储</p>
 
-    <h2 id="goal-title">今日目标 0 词</h2>
+    <section class="goal-block">
+      <p class="micro">今日目标 / TODAY'S GOAL</p>
+      <h2 id="goal-title" class="goal-label">今日目标 <b id="goal-num">0</b> 词</h2>
+    </section>
 
-    <div class="card">
-      <div class="row"><span>已斩 <b id="done-num">0</b> / <span id="done-total">0</span></span></div>
-      <div class="bar"><i id="done-bar" style="width:0%"></i></div>
+    <div class="card progress-card">
+      <div class="stat-line">
+        <span class="micro">已斩 / DONE</span>
+        <span class="stat-num"><b id="done-num">0</b><span class="slash">/</span><span id="done-total">0</span></span>
+      </div>
+      <div class="bar"><i id="done-bar"></i></div>
       <div class="chips">
-        <span class="chip" id="due-chip">待复习 0</span>
-        <span class="chip" id="light-chip">轻复习 0</span>
+        <span class="chip chip-blue" id="due-chip">待复习 0</span>
+        <span class="chip chip-mint" id="light-chip">轻复习 0</span>
       </div>
     </div>
 
-    <div class="card">
-      <div class="qrow"><i class="dot new"></i><span>新词</span><b id="q-new">0</b></div>
-      <div class="qrow"><i class="dot redo"></i><span>重学</span><b id="q-redo">0</b></div>
-      <div class="qrow"><i class="dot due"></i><span>到期复习</span><b id="q-due">0</b></div>
-      <div class="qrow"><i class="dot light"></i><span>轻复习抽查</span><b id="q-light">0</b></div>
+    <div class="card queue-card">
+      <p class="micro">今日队列 / QUEUE</p>
+      <div class="qrow q-new"><i class="dot"></i><span>新词</span><b id="q-new">0</b></div>
+      <div class="qrow q-redo"><i class="dot"></i><span>重学</span><b id="q-redo">0</b></div>
+      <div class="qrow q-due"><i class="dot"></i><span>到期复习</span><b id="q-due">0</b></div>
+      <div class="qrow q-light"><i class="dot"></i><span>轻复习抽查</span><b id="q-light">0</b></div>
     </div>
 
     <button id="start-btn" class="primary">开始学习</button>
@@ -42,20 +52,20 @@
     <p class="total" id="total-progress"></p>
 
     <details class="card settings" id="settings-box">
-      <summary>设置</summary>
+      <summary><span class="micro">设置 / SETTINGS</span><span class="chev">▾</span></summary>
       <div class="setting-row">
-        <span>每日新词数</span>
+        <span class="setting-name">每日新词数</span>
         <div class="seg" id="seg-daily">
           <button data-v="10">10</button><button data-v="20">20</button>
           <button data-v="30">30</button><button data-v="50">50</button>
         </div>
       </div>
       <div class="setting-row">
-        <span>翻面自动朗读</span>
+        <span class="setting-name">翻面自动朗读</span>
         <button class="switch" id="sw-autospeak" aria-pressed="true" aria-label="翻面自动朗读"></button>
       </div>
       <div class="setting-row">
-        <span>朗读语速</span>
+        <span class="setting-name">朗读语速</span>
         <div class="seg" id="seg-rate">
           <button data-v="normal">正常</button><button data-v="slow">慢</button>
         </div>
@@ -64,55 +74,67 @@
   </section>
 
   <section id="view-study" class="view" hidden>
-    <header class="topbar">
-      <button class="icon-btn" id="close-study" aria-label="退出">✕</button>
-      <span id="study-counter" class="muted"></span>
-      <span class="spacer"></span>
+    <header class="bar-top">
+      <button class="icon-btn" id="close-study" aria-label="退出">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <span class="counter" id="study-counter">1 / 10</span>
     </header>
 
     <div class="card-area">
       <div class="flash" id="flash" role="button" tabindex="0" aria-label="词卡,点击看答案">
         <div class="hanzi" id="card-hanzi"></div>
-        <div class="hint" id="card-hint">点击卡片看答案</div>
+        <div class="hint" id="card-hint">点击卡片看答案 / TAP TO REVEAL</div>
         <div id="card-back" hidden>
           <div class="pinyin" id="card-pinyin"></div>
           <div class="tags"><span class="tag" id="card-pos"></span></div>
           <div class="meaning" id="card-meaning"></div>
           <div class="example">
-            <div class="label">例句</div>
+            <p class="micro">例句 / EXAMPLE</p>
             <div class="zh" id="ex-zh"></div>
             <div class="py" id="ex-py"></div>
             <div class="en" id="ex-en"></div>
           </div>
           <div class="audio-row">
-            <button class="pill" id="speak-word">听一听</button>
-            <button class="pill" id="speak-slow">慢速</button>
-            <button class="pill" id="speak-example">读例句</button>
+            <button class="pill pill-blue" id="speak-word">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 8c1.6 1.3 1.6 6.7 0 8"/><path d="M20 5c3.2 2.6 3.2 11.4 0 14"/></svg>
+              听一听
+            </button>
+            <button class="pill pill-pink" id="speak-slow">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></svg>
+              慢速
+            </button>
+            <button class="pill pill-mint" id="speak-example">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
+              读例句
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="actions">
-      <button class="secondary" id="btn-again" disabled>再见一次</button>
-      <button class="primary" id="btn-known" disabled>斩过 ✓</button>
+      <button class="secondary" id="btn-again">再见一次</button>
+      <button class="primary btn-known" id="btn-known">斩过</button>
     </div>
   </section>
 
   <section id="view-summary" class="view" hidden>
     <div class="hero">
-      <div class="check">✓</div>
-      <h2 style="margin:0">今日完成</h2>
+      <div class="stamp">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l5 5L20 6"/></svg>
+        今日完成 / DONE
+      </div>
       <div class="big" id="sum-done"></div>
       <div class="muted" id="sum-sub"></div>
     </div>
-    <div class="card">
-      <div class="row"><span>正确率</span><b id="sum-acc"></b></div>
-      <div class="row"><span>初次答对</span><b id="sum-first"></b></div>
-      <div class="row"><span>需要再见</span><b id="sum-wrong"></b></div>
+    <div class="card stat-card">
+      <div class="stat-line"><span class="micro">正确率 / ACCURACY</span><span class="stat-num"><b id="sum-acc"></b></span></div>
+      <div class="stat-line"><span class="micro">初次答对 / FIRST TRY</span><span class="stat-num"><b id="sum-first"></b></span></div>
+      <div class="stat-line"><span class="micro">需要再见 / AGAIN</span><span class="stat-num"><b id="sum-wrong"></b></span></div>
     </div>
     <div class="card">
-      <div class="label muted" style="margin-bottom:6px">答错的词</div>
+      <p class="micro">答错的词 / WRONG</p>
       <div id="sum-wrong-list"></div>
     </div>
     <button class="primary" id="btn-tomorrow">明天继续</button>

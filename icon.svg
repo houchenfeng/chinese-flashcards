@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
-  <rect width="192" height="192" rx="40" fill="#FAFAF8"/>
-  <rect x="26" y="38" width="140" height="116" rx="16" fill="#FFFFFF" stroke="#1F3A5F" stroke-width="6"/>
-  <text x="96" y="112" font-size="64" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-weight="600" fill="#1F3A5F" text-anchor="middle">词</text>
-  <path d="M52 140 L140 52" stroke="#D64541" stroke-width="12" stroke-linecap="round"/>
+  <rect width="192" height="192" fill="#FFE500"/>
+  <rect x="14" y="14" width="164" height="164" fill="none" stroke="#000000" stroke-width="10"/>
+  <text x="96" y="126" font-size="96" font-family="SimHei, Heiti SC, PingFang SC, Microsoft YaHei, sans-serif" font-weight="700" fill="#000000" text-anchor="middle">词</text>
+  <rect x="128" y="34" width="34" height="34" fill="#FF3D9A" stroke="#000000" stroke-width="8"/>
 </svg>
