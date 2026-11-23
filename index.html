@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>中文百词斩</title>
+<meta name="theme-color" content="#FAFAF8">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="app">
+
+  <section id="view-today" class="view">
+    <header class="topbar">
+      <h1>中文百词斩</h1>
+      <span id="today-date" class="muted"></span>
+    </header>
+
+    <p id="save-warn" class="warn" hidden>进度未能保存,本机可能禁用了存储</p>
+
+    <h2 id="goal-title">今日目标 0 词</h2>
+
+    <div class="card">
+      <div class="row"><span>已斩 <b id="done-num">0</b> / <span id="done-total">0</span></span></div>
+      <div class="bar"><i id="done-bar" style="width:0%"></i></div>
+      <div class="chips">
+        <span class="chip" id="due-chip">待复习 0</span>
+        <span class="chip" id="light-chip">轻复习 0</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="qrow"><i class="dot new"></i><span>新词</span><b id="q-new">0</b></div>
+      <div class="qrow"><i class="dot redo"></i><span>重学</span><b id="q-redo">0</b></div>
+      <div class="qrow"><i class="dot due"></i><span>到期复习</span><b id="q-due">0</b></div>
+      <div class="qrow"><i class="dot light"></i><span>轻复习抽查</span><b id="q-light">0</b></div>
+    </div>
+
+    <button id="start-btn" class="primary">开始学习</button>
+    <button id="summary-link" class="link" hidden>查看小结</button>
+    <p class="total" id="total-progress"></p>
+
+    <details class="card settings" id="settings-box">
+      <summary>设置</summary>
+      <div class="setting-row">
+        <span>每日新词数</span>
+        <div class="seg" id="seg-daily">
+          <button data-v="10">10</button><button data-v="20">20</button>
+          <button data-v="30">30</button><button data-v="50">50</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <span>翻面自动朗读</span>
+        <button class="switch" id="sw-autospeak" aria-pressed="true" aria-label="翻面自动朗读"></button>
+      </div>
+      <div class="setting-row">
+        <span>朗读语速</span>
+        <div class="seg" id="seg-rate">
+          <button data-v="normal">正常</button><button data-v="slow">慢</button>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section id="view-study" class="view" hidden>
+    <header class="topbar">
+      <button class="icon-btn" id="close-study" aria-label="退出">✕</button>
+      <span id="study-counter" class="muted"></span>
+      <span class="spacer"></span>
+    </header>
+
+    <div class="card-area">
+      <div class="flash" id="flash" role="button" tabindex="0" aria-label="词卡,点击看答案">
+        <div class="hanzi" id="card-hanzi"></div>
+        <div class="hint" id="card-hint">点击卡片看答案</div>
+        <div id="card-back" hidden>
+          <div class="pinyin" id="card-pinyin"></div>
+          <div class="tags"><span class="tag" id="card-pos"></span></div>
+          <div class="meaning" id="card-meaning"></div>
+          <div class="example">
+            <div class="label">例句</div>
+            <div class="zh" id="ex-zh"></div>
+            <div class="py" id="ex-py"></div>
+            <div class="en" id="ex-en"></div>
+          </div>
+          <div class="audio-row">
+            <button class="pill" id="speak-word">听一听</button>
+            <button class="pill" id="speak-slow">慢速</button>
+            <button class="pill" id="speak-example">读例句</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="secondary" id="btn-again" disabled>再见一次</button>
+      <button class="primary" id="btn-known" disabled>斩过 ✓</button>
+    </div>
+  </section>
+
+  <section id="view-summary" class="view" hidden>
+    <div class="hero">
+      <div class="check">✓</div>
+      <h2 style="margin:0">今日完成</h2>
+      <div class="big" id="sum-done"></div>
+      <div class="muted" id="sum-sub"></div>
+    </div>
+    <div class="card">
+      <div class="row"><span>正确率</span><b id="sum-acc"></b></div>
+      <div class="row"><span>初次答对</span><b id="sum-first"></b></div>
+      <div class="row"><span>需要再见</span><b id="sum-wrong"></b></div>
+    </div>
+    <div class="card">
+      <div class="label muted" style="margin-bottom:6px">答错的词</div>
+      <div id="sum-wrong-list"></div>
+    </div>
+    <button class="primary" id="btn-tomorrow">明天继续</button>
+  </section>
+
+</div>
+<div id="toast" class="toast" hidden></div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

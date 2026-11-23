@@ -1,0 +1,15 @@
+{
+  "name": "中文百词斩",
+  "short_name": "百词斩",
+  "description": "每天几分钟,认读 HSK 常用词",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAFAF8",
+  "theme_color": "#FAFAF8",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
